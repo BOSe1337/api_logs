@@ -16,14 +16,14 @@ class UserAccessView(APIView):
         return ip
 
     def post(self, request, *args, **kwargs):
-        if self.get_client_ip(request) == request.POST["ipaddress"]:
+        if self.get_client_ip(request) == request.data["ipaddress"]:
             User.objects.create_user(
-                username=request.POST["username"],
-                type_of_log=request.POST["type"],
-                userdomain=request.POST["userdomain"],
-                hostname=request.POST["hostname"],
-                ipaddress=request.POST["ipaddress"],
-                type_of_service=request.POST["logontype"],
+                username=request.data["username"],
+                type_of_log=request.data["type"],
+                userdomain=request.data["userdomain"],
+                hostname=request.data["hostname"],
+                ipaddress=request.data["ipaddress"],
+                type_of_service=request.data["logontype"],
             )
             return Response("Insert done")
         # return Response(request.META["REMOTE_ADDR"])
