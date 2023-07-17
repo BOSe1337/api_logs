@@ -2,7 +2,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class User(AbstractUser):
+class WhiteUser(models.Model):
+    username = models.CharField(max_length=255, verbose_name="username")
     type_of_log = models.CharField(max_length=255, verbose_name="type")
     userdomain = models.CharField(max_length=255, verbose_name="userdomain")
     hostname = models.CharField(max_length=255, verbose_name="hostname")

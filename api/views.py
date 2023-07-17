@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import User, AlienUser
+from .models import AlienUser, WhiteUser
 
 
 # Create your views here.
@@ -17,7 +17,7 @@ class UserAccessView(APIView):
 
     def post(self, request, *args, **kwargs):
         if self.get_client_ip(request) == request.data["ipaddress"]:
-            User.objects.create_user(
+            WhiteUser.objects.create(
                 username=request.data["username"],
                 type_of_log=request.data["type"],
                 userdomain=request.data["userdomain"],
