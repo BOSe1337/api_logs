@@ -12,6 +12,7 @@ class User(AbstractUser):
 
 
 class AlienUser(models.Model):
+    username = models.CharField(max_length=255, verbose_name="username")
     type_of_log = models.CharField(max_length=255, verbose_name="type")
     userdomain = models.CharField(max_length=255, verbose_name="userdomain")
     hostname = models.CharField(max_length=255, verbose_name="hostname")
