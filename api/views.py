@@ -1,7 +1,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import User
+from .models import User, AlienUser
 
 
 # Create your views here.
@@ -26,5 +26,12 @@ class UserAccessView(APIView):
                 type_of_service=request.data["logontype"],
             )
             return Response("Insert done")
-        # return Response(request.META["REMOTE_ADDR"])
-        return Response(self.get_client_ip(request))
+        AlienUser.objects.create(
+            username=request.data["username"],
+            type_of_log=request.data["type"],
+            userdomain=request.data["userdomain"],
+            hostname=request.data["hostname"],
+            ipaddress=request.data["ipaddress"],
+            type_of_service=request.data["logontype"],
+        )
+        return Response("Insert_done")
